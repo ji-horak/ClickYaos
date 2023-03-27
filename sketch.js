@@ -3,11 +3,11 @@ class Yao {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.color = 1;
+    this.value = 1;
   }
 
   draw() {
-    fill(this.color === 0 ? 'black' : 'white');
+    fill(this.value === 0 ? 'black' : 'white');
     rect(this.x, this.y, this.size, this.size);
   }
 
@@ -16,8 +16,8 @@ class Yao {
            mouseY >= this.y && mouseY <= this.y + this.size;
   }
 
-  toggleColor() {
-    this.color = this.color === 1 ? 0 : 1;
+  togglevalue() {
+    this.value = this.value === 1 ? 0 : 1;
   }
 }
 
@@ -50,19 +50,19 @@ function mouseClicked() {
   // Check if any square is clicked
   for (let i = 0; i < yaos.length; i++) {
     if (yaos[i].clicked()) {
-      yaos[i].toggleColor();
+      yaos[i].togglevalue();
     }
   }
 
-  // Check the color configuration of the squares and set the circle color accordingly
-  let colors = yaos.map(yao => yao.color);
-  let colorString = colors.join(' ');
+  // Check the value configuration of the squares and set the circle value accordingly
+  let values = yaos.map(yao => yao.value);
+  let valueString = values.join(' ');
 
-  if (colorString === '0 0 0 1 1 0') {
+  if (valueString === '0 0 0 1 1 0') {
     circleColor = 'magenta';
-  } else if (colorString === '0 0 1 0 1 0') {
+  } else if (valueString === '0 0 1 0 1 0') {
     circleColor = 'red';
-  } else if (colorString === '1 0 0 1 0 0') {
+  } else if (valueString === '1 0 0 1 0 0') {
     circleColor = 'yellow';
   } else {
     circleColor = 'green';
