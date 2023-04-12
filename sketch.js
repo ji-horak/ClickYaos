@@ -31,7 +31,6 @@ let circleOneFill;
 let circleTwoFill;
 let circleThreeFill;
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   let yaoX = width-width/7;
@@ -45,14 +44,43 @@ function setup() {
   yaos.push(new Yao(yaoX, yaoY-yaoSpacing*3, yaoWidth, yaoHeight));
   yaos.push(new Yao(yaoX, yaoY-yaoSpacing*4, yaoWidth, yaoHeight));
   yaos.push(new Yao(yaoX, yaoY-yaoSpacing*5, yaoWidth, yaoHeight));
+
+  renderControls(yaos)
+
+  function renderControls(a) {
+    const controlsHolder = document.createElement('div')
+    controlsHolder.classList.add('controls-holder')
+    
+    a.forEach((e) => {
+      const cI = document.createElement('div') //controlItem
+      cI.dataset.value = e.value      
+      cI.addEventListener('click', function() {
+        e.togglevalue()
+
+        cI.dataset.value = e.value
+
+        if (cI.dataset.value == 0) {
+          cI.classList.add('is-active')
+        } else {
+          cI.classList.remove('is-active')
+        }
+      })      
+
+      controlsHolder.append(cI)
+    })
+
+    document.querySelector('main').append(controlsHolder)
+  }
 }
 
 function draw() {
   background(200);
   noStroke();
-  for (let i = 0; i < yaos.length; i++) {
-    yaos[i].draw();
-  }
+
+  // for (let i = 0; i < yaos.length; i++) {
+    // yaos[i].draw();    
+  // }
+
   blendMode(BLEND);
 
   drawingContext.fillStyle = circleOneFill;
