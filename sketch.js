@@ -8,7 +8,11 @@ class Yao {
   }
 
   draw() {
-    fill(this.value === 0 ? 'black' : 'white');
+    if (this.value) {
+      fill('white');
+    } else {
+      fill('black');
+    }
     rect(this.x, this.y, this.width, this.height);
   }
 
@@ -23,8 +27,6 @@ class Yao {
 }
 
 let yaos = [];
-let circleColor = 'green';
-let rectColor = 'yellow';
 let circleOneFill;
 let circleTwoFill;
 let circleThreeFill;
@@ -46,31 +48,12 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(200);
   noStroke();
   for (let i = 0; i < yaos.length; i++) {
     yaos[i].draw();
   }
-  //Gradient stuff
-  //let circleTwoFill = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
-  //circleTwoFill.addColorStop(0, 'White');
-  //circleTwoFill.addColorStop(0.5, 'White');
-  //circleTwoFill.addColorStop(1, 'Black');
-
-  // let gradient2 = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
-  // gradient2.addColorStop(0, 'Black');
-  // gradient2.addColorStop(0.5, 'Black');
-  // gradient2.addColorStop(1, 'White');
-
-  // let gradient3 = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
-  // gradient3.addColorStop(0, 'White');
-  // gradient3.addColorStop(0.5, 'Black');
-  // gradient3.addColorStop(1, 'White');
-
-  // let gradient4 = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
-  // gradient4.addColorStop(0, 'Black');
-  // gradient4.addColorStop(0.5, 'White');
-  // gradient4.addColorStop(1, 'Black');
+  blendMode(BLEND);
 
   drawingContext.fillStyle = circleOneFill;
   circle(width/2, height/2-120, 200);
@@ -78,22 +61,12 @@ function draw() {
   drawingContext.fillStyle = circleThreeFill;
   circle(width/2, height/2+120, 200);
 
-  blendMode(BLEND);
-
   drawingContext.fillStyle = circleTwoFill;
   circle(width/2, height/2, 200);
 
   blendMode(BLEND);
 
   drawingContext.fillStyle = 'white';
-
-  // Draw circle
-  //fill(circleColor);
-  //ellipse(200, 350, 150, 150);
-
-  // Draw rectangle
-  //fill(rectColor);
-  //rect(200, 400, 150, 50);
 }
 
 function mouseClicked() {
@@ -174,10 +147,12 @@ function mouseClicked() {
     circleThreeFill.addColorStop(1, 'White');
   }
 
-  //All six
-  // let values = yaos.map(yao => yao.value);
-  // let valueString = values.join(' ');
+  
 
+  //All six
+   let values = yaos.map(yao => yao.value);
+   let valueString = values.join(' ');
+   print(valueString);
   // if (valueString === '0 0 0 1 1 0') {
   //   circleColor = 'magenta';
   // } else if (valueString === '0 0 1 0 1 0') {
