@@ -25,6 +25,10 @@ class Yao {
 let yaos = [];
 let circleColor = 'green';
 let rectColor = 'yellow';
+let circleOneFill;
+let circleTwoFill;
+let circleThreeFill;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -48,48 +52,48 @@ function draw() {
     yaos[i].draw();
   }
   //Gradient stuff
-  let gradient1 = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
-  gradient1.addColorStop(0, 'White');
-  gradient1.addColorStop(0.5, 'White');
-  gradient1.addColorStop(1, 'Black');
+  //let circleTwoFill = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
+  //circleTwoFill.addColorStop(0, 'White');
+  //circleTwoFill.addColorStop(0.5, 'White');
+  //circleTwoFill.addColorStop(1, 'Black');
 
-  let gradient2 = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
-  gradient2.addColorStop(0, 'Black');
-  gradient2.addColorStop(0.5, 'Black');
-  gradient2.addColorStop(1, 'White');
+  // let gradient2 = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
+  // gradient2.addColorStop(0, 'Black');
+  // gradient2.addColorStop(0.5, 'Black');
+  // gradient2.addColorStop(1, 'White');
 
-  let gradient3 = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
-  gradient3.addColorStop(0, 'White');
-  gradient3.addColorStop(0.5, 'Black');
-  gradient3.addColorStop(1, 'White');
+  // let gradient3 = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+  // gradient3.addColorStop(0, 'White');
+  // gradient3.addColorStop(0.5, 'Black');
+  // gradient3.addColorStop(1, 'White');
 
-  let gradient4 = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
-  gradient4.addColorStop(0, 'Black');
-  gradient4.addColorStop(0.5, 'White');
-  gradient4.addColorStop(1, 'Black');
+  // let gradient4 = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+  // gradient4.addColorStop(0, 'Black');
+  // gradient4.addColorStop(0.5, 'White');
+  // gradient4.addColorStop(1, 'Black');
 
-  drawingContext.fillStyle = gradient3;
+  drawingContext.fillStyle = circleOneFill;
   circle(width/2, height/2-120, 200);
 
-  drawingContext.fillStyle = gradient4;
+  drawingContext.fillStyle = circleThreeFill;
   circle(width/2, height/2+120, 200);
 
   blendMode(BLEND);
 
-  drawingContext.fillStyle = gradient1;
+  drawingContext.fillStyle = circleTwoFill;
   circle(width/2, height/2, 200);
 
   blendMode(BLEND);
 
   drawingContext.fillStyle = 'white';
 
-  // // Draw circle
-  // fill(circleColor);
-  // ellipse(200, 350, 150, 150);
+  // Draw circle
+  //fill(circleColor);
+  //ellipse(200, 350, 150, 150);
 
-  // // Draw rectangle
-  // fill(rectColor);
-  // rect(200, 400, 150, 50);
+  // Draw rectangle
+  //fill(rectColor);
+  //rect(200, 400, 150, 50);
 }
 
 function mouseClicked() {
@@ -102,25 +106,86 @@ function mouseClicked() {
 
   // Check the value configuration of the squares and set the circle value accordingly
 
-  //Individually
-  if (yaos[0].value === 0 && yaos[1].value === 1) {
-    rectColor = 'blue';
+  //Individually (corresponding pairs)
+  //Circle One
+  if (yaos[0].value === 1 && yaos[3].value === 0) {
+    circleOneFill = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+    circleOneFill.addColorStop(0, 'White');
+    circleOneFill.addColorStop(0.5, 'Black');
+    circleOneFill.addColorStop(1, 'White');
+  } else if (yaos[0].value === 1 && yaos[3].value === 1) {
+    circleOneFill = drawingContext.createRadialGradient(width/2, height/2-120, 30, width/2, height/2-120, 100);
+    circleOneFill.addColorStop(0, 'White');
+    circleOneFill.addColorStop(0.5, 'White');
+    circleOneFill.addColorStop(1, 'Black');
+  } else if (yaos[0].value === 0 && yaos[3].value === 1) {
+    circleOneFill = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+    circleOneFill.addColorStop(0, 'Black');
+    circleOneFill.addColorStop(0.5, 'White');
+    circleOneFill.addColorStop(1, 'Black');
   } else {
-    rectColor = 'yellow';
+    circleOneFill = drawingContext.createRadialGradient(width/2, height/2-120, 30, width/2, height/2-120, 100);
+    circleOneFill.addColorStop(0, 'Black');
+    circleOneFill.addColorStop(0.5, 'Black');
+    circleOneFill.addColorStop(1, 'White');
+  }
+  //Circle Two
+  if (yaos[1].value === 1 && yaos[4].value === 0) {
+    circleTwoFill = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+    circleTwoFill.addColorStop(0, 'White');
+    circleTwoFill.addColorStop(0.5, 'Black');
+    circleTwoFill.addColorStop(1, 'White');
+  } else if (yaos[1].value === 1 && yaos[4].value === 1) {
+    circleTwoFill = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
+    circleTwoFill.addColorStop(0, 'White');
+    circleTwoFill.addColorStop(0.5, 'White');
+    circleTwoFill.addColorStop(1, 'Black');
+  } else if (yaos[1].value === 0 && yaos[4].value === 1) {
+    circleTwoFill = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+    circleTwoFill.addColorStop(0, 'Black');
+    circleTwoFill.addColorStop(0.5, 'White');
+    circleTwoFill.addColorStop(1, 'Black');
+  } else {
+    circleTwoFill = drawingContext.createRadialGradient(width/2, height/2, 30, width/2, height/2, 100);
+    circleTwoFill.addColorStop(0, 'Black');
+    circleTwoFill.addColorStop(0.5, 'Black');
+    circleTwoFill.addColorStop(1, 'White');
+  }
+  //Circle Three
+  if (yaos[2].value === 1 && yaos[5].value === 0) {
+    circleThreeFill = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+    circleThreeFill.addColorStop(0, 'White');
+    circleThreeFill.addColorStop(0.5, 'Black');
+    circleThreeFill.addColorStop(1, 'White');
+  } else if (yaos[2].value === 1 && yaos[5].value === 1) {
+    circleThreeFill = drawingContext.createRadialGradient(width/2, height/2+120, 30, width/2, height/2+120, 100);
+    circleThreeFill.addColorStop(0, 'White');
+    circleThreeFill.addColorStop(0.5, 'White');
+    circleThreeFill.addColorStop(1, 'Black');
+  } else if (yaos[2].value === 0 && yaos[5].value === 1) {
+    circleThreeFill = drawingContext.createLinearGradient(width/2-100, 0, width/2+100, 0);
+    circleThreeFill.addColorStop(0, 'Black');
+    circleThreeFill.addColorStop(0.5, 'White');
+    circleThreeFill.addColorStop(1, 'Black');
+  } else {
+    circleThreeFill = drawingContext.createRadialGradient(width/2, height/2+120, 30, width/2, height/2+120, 100);
+    circleThreeFill.addColorStop(0, 'Black');
+    circleThreeFill.addColorStop(0.5, 'Black');
+    circleThreeFill.addColorStop(1, 'White');
   }
 
   //All six
-  let values = yaos.map(yao => yao.value);
-  let valueString = values.join(' ');
+  // let values = yaos.map(yao => yao.value);
+  // let valueString = values.join(' ');
 
-  if (valueString === '0 0 0 1 1 0') {
-    circleColor = 'magenta';
-  } else if (valueString === '0 0 1 0 1 0') {
-    circleColor = 'red';
-  } else if (valueString === '1 0 0 1 0 0') {
-    circleColor = 'yellow';
-  } else {
-    circleColor = 'green';
-  }
+  // if (valueString === '0 0 0 1 1 0') {
+  //   circleColor = 'magenta';
+  // } else if (valueString === '0 0 1 0 1 0') {
+  //   circleColor = 'red';
+  // } else if (valueString === '1 0 0 1 0 0') {
+  //   circleColor = 'yellow';
+  // } else {
+  //   circleColor = 'green';
+  // }
 }
 
